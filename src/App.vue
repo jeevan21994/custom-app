@@ -23,12 +23,19 @@ export default {
   },
   created(){
     const token =(localStorage.getItem('currentUser'));
-  console.log(token)
     if(token){
-      this.$router.replace('/dashboard')
+      this.$router.push("/dashboard").catch(error => {
+                   if (error.name != "NavigationDuplicated") {
+                       throw error;
+                    }
+                });
     }
     else{
-    this.$router.replace('/login')
+      this.$router.push("/login").catch(error => {
+                   if (error.name != "NavigationDuplicated") {
+                       throw error;
+                    }
+                });
 
     }
     }

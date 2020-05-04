@@ -12,7 +12,6 @@ Vue.use(VueRouter)
   {
     path: "/",
     redirect: "/login",
-    meta: { layout: "login", isPublic: true }
 },
 {
       path:"/login",component:Login
@@ -30,12 +29,11 @@ Vue.use(VueRouter)
     path : "/dashboard" ,name:"dashboard",component : Dashboard,
    beforeEach:(to ,from ,next)=>{
   if(store.state.authenticated == false){
-    next(false);
+    next();
   }else{
-    next('/dashboard')
+    next()
   }
 }
-
 },
 ]
 // It is worth mentioning that Vue Router navigation methods (push, replace, go) 
@@ -47,17 +45,3 @@ const router = new VueRouter({
 
 export default router
 
-
-// {
-  //   path: '/',
-  //   name: 'Home',
-  //   component: Home
-  // },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // },
